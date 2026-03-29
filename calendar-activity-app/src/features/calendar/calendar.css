@@ -1,0 +1,51 @@
+/* Custom styles for react-big-calendar */
+
+.rbc-calendar {
+  @apply rounded-lg shadow-lg;
+}
+
+.rbc-toolbar {
+  @apply bg-gray-100 p-4 rounded-t-lg border-b border-gray-200;
+}
+
+.rbc-toolbar button {
+  @apply bg-white text-gray-700 px-4 py-2 rounded-md border border-gray-300 shadow-sm hover:bg-gray-50;
+}
+
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
+  @apply bg-blue-500 text-white border-blue-500;
+}
+
+.rbc-toolbar .rbc-toolbar-label {
+  @apply text-2xl font-bold text-gray-800;
+}
+
+.rbc-month-view,
+.rbc-time-view {
+  @apply border-gray-200;
+}
+
+.rbc-header {
+  @apply p-2 text-center font-semibold text-gray-600 border-b border-r border-gray-200;
+}
+
+.rbc-day-bg {
+  @apply border-l border-gray-200;
+}
+
+.rbc-today {
+  @apply bg-blue-100;
+}
+
+.rbc-event {
+  @apply bg-blue-500 text-white p-1 rounded-md;
+}
+
+.rbc-event.rbc-selected {
+  @apply bg-blue-700;
+}
+
+.rbc-slot-selection {
+  @apply bg-blue-200;
+}
