@@ -9,17 +9,29 @@ const ActivitiesPage: React.FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">Activities</h1>
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Activities
+          </h1>
+          <p className="text-gray-600 dark:text-gray-300 mt-1">
+            Manage your upcoming and completed tasks.
+          </p>
+        </div>
         <button
           onClick={() => setIsFormOpen(true)}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
           Add Activity
         </button>
       </div>
       <ActivityList activities={activities} />
-      {isFormOpen && <ActivityForm onClose={() => setIsFormOpen(false)} />}
+      {isFormOpen && (
+        <ActivityDetailsModal
+          onClose={() => setIsFormOpen(false)}
+          activity={undefined}
+        />
+      )}
     </div>
   );
 };

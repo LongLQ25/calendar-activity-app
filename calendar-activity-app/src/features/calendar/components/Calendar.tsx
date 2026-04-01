@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
+import type { View } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import type { Activity } from '../../activity/types';
@@ -21,7 +22,9 @@ interface CalendarProps {
 }
 
 const Calendar: React.FC<CalendarProps> = ({ events }) => {
-  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(
+    null
+  );
   const [showActivityModal, setShowActivityModal] = useState(false);
   const [showAddActivityModal, setShowAddActivityModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -47,17 +50,59 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
       <BigCalendar
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 600 }}
+        style={{ height: 'calc(100vh - 200px)' }}
         className="rbc-calendar"
         onSelectEvent={handleSelectEvent}
         onSelectSlot={handleSelectSlot}
         selectable
+        views={['month', 'week', 'day']}
+        components={{
+          toolbar: (toolbar) => {
+            return (
+              <div className="rbc-toolbar">
+                <span className="rbc-btn-group">
+                  <button
+                    type="button"
+                    onClick={() => toolbar.onNavigate('PREV')}
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => toolbar.onNavigate('NEXT')}
+                  >
+                    Next
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => toolbar.onNavigate('TODAY')}
+                  >
+                    Today
+                  </button>
+                </span>
+                <span className="rbc-toolbar-label">{toolbar.label}</span>
+                <span className="rbc-btn-group">
+                  {Object.keys(toolbar.views).map((view: string) => (
+                    <button
+                      key={view}
+                      type="button"
+                      className={toolbar.view === view ? 'rbc-active' : ''}
+                      onClick={() => toolbar.onView(view as View)}
+                    >
+                      {view.charAt(0).toUpperCase() + view.slice(1)}
+                    </button>
+                  ))}
+                </span>
+              </div>
+            );
+          },
+        }}
       />
       {showActivityModal && selectedActivity && (
         <ActivityDetailsModal
@@ -66,15 +111,10 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
         />
       )}
       {showAddActivityModal && selectedDate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
-            <h2 className="text-2xl font-bold mb-4">Add Activity for {selectedDate.toLocaleDateString()}</h2>
-            <ActivityForm
-              onClose={handleCloseAddActivityModal}
-              date={selectedDate.toISOString().split('T')[0]}
-            />
-          </div>
-        </div>
+        <ActivityForm
+          onClose={handleCloseAddActivityModal}
+          date={selectedDate.toISOString().split('T')[0]}
+        />
       )}
     </div>
   );

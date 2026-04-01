@@ -1,51 +1,59 @@
-/* Custom styles for react-big-calendar */
-
-.rbc-calendar {
-  @apply rounded-lg shadow-lg;
-}
-
 .rbc-toolbar {
-  @apply bg-gray-100 p-4 rounded-t-lg border-b border-gray-200;
-}
-
-.rbc-toolbar button {
-  @apply bg-white text-gray-700 px-4 py-2 rounded-md border border-gray-300 shadow-sm hover:bg-gray-50;
-}
-
-.rbc-toolbar button:active,
-.rbc-toolbar button.rbc-active {
-  @apply bg-blue-500 text-white border-blue-500;
+  @apply flex justify-between items-center mb-4;
 }
 
 .rbc-toolbar .rbc-toolbar-label {
-  @apply text-2xl font-bold text-gray-800;
+  @apply text-2xl font-bold text-gray-900 dark:text-white;
 }
 
-.rbc-month-view,
-.rbc-time-view {
-  @apply border-gray-200;
+.rbc-toolbar .rbc-btn-group button {
+  @apply px-4 py-2 text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+}
+
+.rbc-toolbar .rbc-btn-group button.rbc-active {
+  @apply bg-blue-500 text-white;
 }
 
 .rbc-header {
-  @apply p-2 text-center font-semibold text-gray-600 border-b border-r border-gray-200;
+  @apply text-center text-sm font-medium text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 py-2;
 }
 
 .rbc-day-bg {
-  @apply border-l border-gray-200;
+  @apply border-l border-gray-200 dark:border-gray-700;
+}
+
+.rbc-day-bg:first-child {
+  @apply border-l-0;
 }
 
 .rbc-today {
-  @apply bg-blue-100;
+  @apply bg-blue-100 dark:bg-blue-900;
 }
 
 .rbc-event {
-  @apply bg-blue-500 text-white p-1 rounded-md;
+  @apply bg-blue-500 text-white p-1 rounded-lg text-sm;
 }
 
-.rbc-event.rbc-selected {
-  @apply bg-blue-700;
+.rbc-event-content {
+  @apply px-2 py-1;
 }
 
-.rbc-slot-selection {
-  @apply bg-blue-200;
+.rbc-month-view {
+  @apply border-gray-200 dark:border-gray-700;
+}
+
+.rbc-month-row {
+  @apply border-t border-gray-200 dark:border-gray-700;
+}
+
+.rbc-time-view .rbc-header {
+  @apply border-b-0;
+}
+
+.rbc-time-header-content {
+  @apply border-l-0;
+}
+
+.rbc-time-slot {
+  @apply border-t border-gray-200 dark:border-gray-700;
 }
