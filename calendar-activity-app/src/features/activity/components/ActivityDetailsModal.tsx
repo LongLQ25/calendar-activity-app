@@ -1,8 +1,9 @@
 import React from 'react';
 import type { Activity } from '../types';
+import ActivityForm from './ActivityForm';
 
 interface ActivityDetailsModalProps {
-  activity: Activity;
+  activity?: Activity;
   onClose: () => void;
 }
 
@@ -15,7 +16,7 @@ const ActivityDetailsModal: React.FC<ActivityDetailsModalProps> = ({
       <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-lg">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            {activity.title}
+            {activity ? 'Edit Activity' : 'Add Activity'}
           </h2>
           <button
             onClick={onClose}
@@ -37,23 +38,7 @@ const ActivityDetailsModal: React.FC<ActivityDetailsModalProps> = ({
             </svg>
           </button>
         </div>
-        <p className="mb-4 text-gray-700 dark:text-gray-300">
-          {activity.description}
-        </p>
-        <p className="mb-4 text-gray-700 dark:text-gray-300">
-          Date: {new Date(activity.date).toLocaleDateString()}
-        </p>
-        <p className="mb-4 text-gray-700 dark:text-gray-300">
-          Status: {activity.status}
-        </p>
-        <div className="flex justify-end">
-          <button
-            onClick={onClose}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Close
-          </button>
-        </div>
+        <ActivityForm activity={activity} onClose={onClose} />
       </div>
     </div>
   );

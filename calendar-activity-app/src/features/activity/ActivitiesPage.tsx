@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useActivityStore } from './store';
 import ActivityList from './components/ActivityList';
 import ActivityForm from './components/ActivityForm';
+import ActivityDetailsModal from './components/ActivityDetailsModal';
 
 const ActivitiesPage: React.FC = () => {
   const { activities } = useActivityStore();
