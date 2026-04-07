@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import type { Activity } from './types';
+import type { Activity } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { storage } from '../../services/storage';
 

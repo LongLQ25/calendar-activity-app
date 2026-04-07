@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Activity } from '../types';
+import type { Activity } from '../../../types';
 import { useActivityStore } from '../store';
 // import ActivityForm from './ActivityForm';
 import ActivityDetailsModal from './ActivityDetailsModal';
