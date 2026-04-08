@@ -1,29 +1,21 @@
 import React from 'react';
-import { useStore } from '../../../store/useStore';
 
-const Counter: React.FC = () => {
-  const { count, increment, decrement } = useStore();
+interface DashboardCounterProps {
+  title: string;
+  value: string;
+}
 
+const DashboardCounter: React.FC<DashboardCounterProps> = ({ title, value }) => {
   return (
-    <div className="p-4 bg-white rounded shadow-md">
-      <h2 className="text-xl font-bold">Counter</h2>
-      <p className="my-4">Count: {count}</p>
-      <div className="flex space-x-2">
-        <button
-          onClick={increment}
-          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-        >
-          Increment
-        </button>
-        <button
-          onClick={decrement}
-          className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-        >
-          Decrement
-        </button>
-      </div>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+      <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+        {title}
+      </h3>
+      <p className="text-3xl font-bold text-gray-900 dark:text-white mt-2">
+        {value}
+      </p>
     </div>
   );
 };
 
-export default Counter;
+export default DashboardCounter;
