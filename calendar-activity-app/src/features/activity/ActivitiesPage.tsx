@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useActivityStore } from './store';
 import ActivityList from './components/ActivityList';
 import ActivityForm from './components/ActivityForm';
-import ActivityDetailsModal from './components/ActivityDetailsModal';
+import Modal from '../../components/Modal';
 
 const ActivitiesPage: React.FC = () => {
   const { activities } = useActivityStore();
@@ -28,10 +28,9 @@ const ActivitiesPage: React.FC = () => {
       </div>
       <ActivityList activities={activities} />
       {isFormOpen && (
-        <ActivityDetailsModal
-          onClose={() => setIsFormOpen(false)}
-          activity={undefined}
-        />
+        <Modal onClose={() => setIsFormOpen(false)} title="Add Activity">
+          <ActivityForm onClose={() => setIsFormOpen(false)} />
+        </Modal>
       )}
     </div>
   );

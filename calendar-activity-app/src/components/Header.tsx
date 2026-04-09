@@ -1,9 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { SearchIcon } from './icons/SearchIcon';
-import { NotificationIcon } from './icons/NotificationIcon';
-import { UserIcon } from './icons/UserIcon';
-import { ChevronDownIcon } from './icons/ChevronDownIcon';
+import { FiSearch, FiBell, FiUser, FiChevronDown } from 'react-icons/fi';
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -22,7 +19,7 @@ const Header: React.FC = () => {
 
       <div className="flex items-center space-x-4">
         <div className="relative">
-          <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <input
             type="text"
             placeholder="Search..."
@@ -31,13 +28,13 @@ const Header: React.FC = () => {
         </div>
 
         <button className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-          <NotificationIcon className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+          <FiBell className="w-6 h-6 text-gray-600 dark:text-gray-300" />
         </button>
 
         <div className="flex items-center space-x-2">
-          <UserIcon className="w-8 h-8 rounded-full" />
+          <FiUser className="w-8 h-8 rounded-full" />
           <span className="text-gray-800 dark:text-gray-200">John Doe</span>
-          <ChevronDownIcon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+          <FiChevronDown className="w-5 h-5 text-gray-600 dark:text-gray-300" />
         </div>
       </div>
     </header>

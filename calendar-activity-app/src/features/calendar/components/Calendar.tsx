@@ -3,8 +3,9 @@ import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar';
 import type { View } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import type { Activity } from '../../activity/types';
+import type { Activity } from '../../../types';
 import ActivityDetailsModal from '../../activity/components/ActivityDetailsModal';
+import Modal from '../../../components/Modal';
 import ActivityForm from '../../activity/components/ActivityForm';
 
 const localizer = momentLocalizer(moment);
@@ -111,10 +112,12 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
         />
       )}
       {showAddActivityModal && selectedDate && (
-        <ActivityForm
-          onClose={handleCloseAddActivityModal}
-          date={selectedDate.toISOString().split('T')[0]}
-        />
+        <Modal onClose={handleCloseAddActivityModal} title="Add Activity">
+          <ActivityForm
+            onClose={handleCloseAddActivityModal}
+            date={selectedDate.toISOString().split('T')[0]}
+          />
+        </Modal>
       )}
     </div>
   );

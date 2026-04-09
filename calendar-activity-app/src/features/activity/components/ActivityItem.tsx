@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import type { Activity } from '../../../types';
 import { useActivityStore } from '../store';
-// import ActivityForm from './ActivityForm';
-import ActivityDetailsModal from './ActivityDetailsModal';
+import ActivityForm from './ActivityForm';
+import Modal from '../../../components/Modal';
 
 interface ActivityItemProps {
   activity: Activity;
@@ -13,7 +13,7 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ activity }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
       <div className="p-6">
         <div className="flex justify-between items-start">
           <h3
@@ -63,10 +63,12 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ activity }) => {
         </button>
       </div>
       {isEditing && (
-        <ActivityDetailsModal
-          activity={activity}
-          onClose={() => setIsEditing(false)}
-        />
+        <Modal onClose={() => setIsEditing(false)} title="Edit Activity">
+          <ActivityForm
+            activity={activity}
+            onClose={() => setIsEditing(false)}
+          />
+        </Modal>
       )}
     </div>
   );

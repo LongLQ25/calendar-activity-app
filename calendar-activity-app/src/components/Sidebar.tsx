@@ -1,9 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { DashboardIcon } from './icons/DashboardIcon';
-import { CalendarIcon } from './icons/CalendarIcon';
-import { ActivityIcon } from './icons/ActivityIcon';
-import { Logo } from './icons/Logo';
+import { RxDashboard } from 'react-icons/rx';
+import { LuCalendar } from 'react-icons/lu';
+import { FiActivity, FiCalendar } from 'react-icons/fi';
 
 const Sidebar: React.FC = () => {
   const commonClasses =
@@ -15,7 +14,7 @@ const Sidebar: React.FC = () => {
   return (
     <div className="w-64 bg-white dark:bg-gray-800 shadow-md flex flex-col">
       <div className="flex items-center justify-center h-20 border-b dark:border-gray-700">
-        <Logo className="w-8 h-8 text-blue-500" />
+        <FiCalendar className="w-8 h-8 text-blue-500" />
         <h1 className="text-2xl font-bold ml-2 text-gray-900 dark:text-white">
           Calendar
         </h1>
@@ -27,7 +26,7 @@ const Sidebar: React.FC = () => {
             `${commonClasses} ${isActive ? activeClasses : inactiveClasses}`
           }
         >
-          <DashboardIcon className="w-6 h-6 mr-3" />
+          <RxDashboard className="w-6 h-6 mr-3" />
           Dashboard
         </NavLink>
         <NavLink
@@ -36,7 +35,7 @@ const Sidebar: React.FC = () => {
             `${commonClasses} ${isActive ? activeClasses : inactiveClasses} mt-2`
           }
         >
-          <CalendarIcon className="w-6 h-6 mr-3" />
+          <LuCalendar className="w-6 h-6 mr-3" />
           Calendar
         </NavLink>
         <NavLink
@@ -45,7 +44,7 @@ const Sidebar: React.FC = () => {
             `${commonClasses} ${isActive ? activeClasses : inactiveClasses} mt-2`
           }
         >
-          <ActivityIcon className="w-6 h-6 mr-3" />
+          <FiActivity className="w-6 h-6 mr-3" />
           Activities
         </NavLink>
       </nav>

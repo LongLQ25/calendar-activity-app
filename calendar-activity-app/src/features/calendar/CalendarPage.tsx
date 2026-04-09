@@ -1,7 +1,7 @@
 import React from 'react';
 import Calendar from './components/Calendar';
 import { useActivityStore } from '../activity/store';
-import type { Activity } from '../activity/types';
+import type { Activity } from '../../types';
 
 const CalendarPage: React.FC = () => {
   const { activities } = useActivityStore();
