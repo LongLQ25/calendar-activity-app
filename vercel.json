@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "installCommand": "cd calendar-activity-app && npm ci",
+  "buildCommand": "cd calendar-activity-app && npm run build",
+  "outputDirectory": "calendar-activity-app/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
