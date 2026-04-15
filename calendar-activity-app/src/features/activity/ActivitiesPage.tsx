@@ -4,9 +4,32 @@ import ActivityList from './components/ActivityList';
 import ActivityForm from './components/ActivityForm';
 import Modal from '../../components/Modal';
 
+function pad2(value: number) {
+  return String(value).padStart(2, '0');
+}
+
+function todayLocalISODate() {
+  const now = new Date();
+  return `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+}
+
 const ActivitiesPage: React.FC = () => {
   const { activities } = useActivityStore();
   const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const today = todayLocalISODate();
+  const upcoming = activities
+    .filter((a) => a.status === 'pending' && a.date >= today)
+    .slice()
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const overdue = activities
+    .filter((a) => a.status === 'pending' && a.date < today)
+    .slice()
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const review = activities
+    .filter((a) => a.status === 'done' || a.status === 'skipped')
+    .slice()
+    .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <div>
@@ -26,7 +49,62 @@ const ActivitiesPage: React.FC = () => {
           Add Activity
         </button>
       </div>
-      <ActivityList activities={activities} />
+
+      <div className="space-y-10">
+        <section>
+          <div className="flex items-baseline justify-between gap-4 mb-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Upcoming
+            </h2>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              {upcoming.length} item(s)
+            </div>
+          </div>
+          {upcoming.length ? (
+            <ActivityList activities={upcoming} />
+          ) : (
+            <div className="text-sm text-gray-600 dark:text-gray-300">
+              No upcoming activities.
+            </div>
+          )}
+        </section>
+
+        <section>
+          <div className="flex items-baseline justify-between gap-4 mb-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Overdue
+            </h2>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              {overdue.length} item(s)
+            </div>
+          </div>
+          {overdue.length ? (
+            <ActivityList activities={overdue} />
+          ) : (
+            <div className="text-sm text-gray-600 dark:text-gray-300">
+              Nothing overdue.
+            </div>
+          )}
+        </section>
+
+        <section>
+          <div className="flex items-baseline justify-between gap-4 mb-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Review (Done / Skipped)
+            </h2>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              {review.length} item(s)
+            </div>
+          </div>
+          {review.length ? (
+            <ActivityList activities={review} />
+          ) : (
+            <div className="text-sm text-gray-600 dark:text-gray-300">
+              Nothing to review yet.
+            </div>
+          )}
+        </section>
+      </div>
       {isFormOpen && (
         <Modal onClose={() => setIsFormOpen(false)} title="Add Activity">
           <ActivityForm onClose={() => setIsFormOpen(false)} />

@@ -5,5 +5,6 @@ export type Activity = {
   description: string;
   category: string;
   location: string;
-  status: 'pending' | 'done';
+  status: 'pending' | 'done' | 'skipped';
+  completionNote?: string;
 };
